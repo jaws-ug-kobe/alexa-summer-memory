@@ -7,7 +7,8 @@
       "noFallthroughCasesInSwitch": true,
       "outDir": "./dist",
       "jsx": "react",
-      "allowJs": false
+      "allowJs": false,
+      "sourceMap": true
     },
     "include": [
         "./**/*"

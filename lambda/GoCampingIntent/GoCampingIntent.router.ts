@@ -13,7 +13,7 @@ export const GoCampingIntentRouter: Router = {
             .addAudioPlayerPlayDirective(
                 'REPLACE_ALL',
                 'https://s3.amazonaws.com/alexa.summer.camp.memory.sound/camping.sound.001.mp3',
-                null,
+                'campsound',
                 0,
                 null
             )

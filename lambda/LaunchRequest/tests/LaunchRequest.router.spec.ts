@@ -1,12 +1,12 @@
 import { HandlerInputCreator } from '@ask-utils/test';
 import { RequestHandlerFactory } from '@talkyjs/core';
 import { RequestHandler } from 'ask-sdk-core';
-import { LaunchRequestRouter } from '../LaunchRequest.router'
+import { FirstLaunchRequestRouter } from '../LaunchRequest.router'
 
 describe('LaunchRequestRouter', () => {
   let handler: RequestHandler;
   beforeEach(() => {
-    handler = RequestHandlerFactory.create(LaunchRequestRouter);
+    handler = RequestHandlerFactory.create(FirstLaunchRequestRouter);
   });
   describe('canHandle', () => {
     it('should return false when given a not LaunchRequest', async () => {

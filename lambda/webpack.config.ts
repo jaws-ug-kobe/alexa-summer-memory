@@ -19,7 +19,8 @@ const config: Webpack.Configuration = {
     path: BUILT_PATH,
     libraryTarget: 'commonjs2'
   },
-  externals: ['dtrace-provider', 'fs', 'mv', 'os', 'source-map-support'],
+  // externals: ['dtrace-provider', 'fs', 'mv', 'os', 'source-map-support'],
+  externals: ['dtrace-provider', 'fs', 'mv', 'os'],
   module: {
     rules: [
       {
