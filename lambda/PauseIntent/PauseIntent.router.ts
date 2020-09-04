@@ -8,7 +8,8 @@ export const PauseIntentRouter: Router = {
         
         
         return handlerInput.responseBuilder
-            .speak("Hello! It's a nice development. How are you?").reprompt("How are you?")
+            .speak("またキャンプ行きましょう！")
+            .addAudioPlayerStopDirective()
             .getResponse()
         
         
