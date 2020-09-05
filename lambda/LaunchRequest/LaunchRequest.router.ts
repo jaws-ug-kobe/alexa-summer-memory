@@ -1,5 +1,8 @@
 import { Router } from "@talkyjs/core";
 
+import apl from '../apl/document'
+import ds from '../apl/datasources/default'
+
 export const FirstLaunchRequestRouter: Router = {
     requestType: "LaunchRequest",
     situation: {
@@ -10,6 +13,12 @@ export const FirstLaunchRequestRouter: Router = {
     handler: async (handlerInput) => {
         return handlerInput.responseBuilder
             .speak("今年の夏はどこも行きづらくって大変でしたね。このスキルで少しでもキャンプ気分を味わってもらえたらうれしいです。どこに行きましょうか？").reprompt("どこに行きましょうか？")
+            .addDirective({
+                type: 'Alexa.Presentation.APL.RenderDocument',
+                token: 'LaunchRequest',
+                document: apl,
+                datasources: ds
+            })
             .getResponse()
     }
 }
@@ -24,6 +33,11 @@ export const SecondLaunchRequestRouter: Router = {
     handler: async (handlerInput) => {
         return handlerInput.responseBuilder
             .speak("おかえりなさい。キャンプ、好きなんですね。今日はどこに行きましょうか？").reprompt("今日はどこに行きましょうか？")
+            .addDirective({
+                type: 'Alexa.Presentation.APL.RenderDocument',
+                token: 'LaunchRequest',
+                document: apl
+            })
             .getResponse()
     }
 }
@@ -47,6 +61,12 @@ export const DefaultLaunchRequestRouter: Router = {
     handler: async (handlerInput) => {
         return handlerInput.responseBuilder
             .speak("今年の夏はどこも行きづらくって大変でしたね。このスキルで少しでもキャンプ気分を味わってもらえたらうれしいです。どこに行きましょうか？").reprompt("どこに行きましょうか？")
+            .addDirective({
+                type: 'Alexa.Presentation.APL.RenderDocument',
+                token: 'LaunchRequest',
+                document: apl,
+                datasources: ds
+            })
             .getResponse()
     }
 }
