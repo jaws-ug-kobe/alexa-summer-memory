@@ -16,6 +16,14 @@
                     "samples": []
                 },
                 {
+                    "name": "AMAZON.ResumeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.PauseIntent",
+                    "samples": []
+                },
+                {
                     "name": "GoCampingIntent",
                     "slots": [],
                     "samples": [
