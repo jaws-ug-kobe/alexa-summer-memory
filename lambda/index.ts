@@ -18,8 +18,7 @@ const config: TalkyJSSkillConfig = {
     database: {                           // [Optional] Database configuration
         type: 's3',                       // [Optional] Database type (none / s3 / dynamodb)
         tableName: 'alexa-summer-camp-memory', // [Optional] Database table name
-    },
-    skillId: 'amzn1.ask.skill.1d1e688d-cd02-4380-a7a1-94d1279d5af3' // [Optional] Skill ID
+    }
 }
 
 const LoadPersistentAttributesRequestInterceptor = {
