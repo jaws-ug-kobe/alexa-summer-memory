@@ -5,7 +5,11 @@ ask cli v2
 
 ## deploy
 
-ask init --profile xxxx
+cd lambda
+yarn install
+webpack
 
+cd ../
+ask init --profile xxxx
 ask deploy --profile xxxxx
 
