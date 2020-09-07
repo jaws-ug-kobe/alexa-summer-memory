@@ -5,6 +5,7 @@ ask cli v2
 
 ## deploy
 
+```
 cd lambda
 yarn install
 webpack
@@ -12,4 +13,5 @@ webpack
 cd ../
 ask init --profile xxxx
 ask deploy --profile xxxxx
+```
 
