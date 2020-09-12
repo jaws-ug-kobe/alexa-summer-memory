@@ -27,7 +27,36 @@
                     "name": "GoCampingIntent",
                     "slots": [],
                     "samples": [
-                        "森につれていって"
+                        "キャンプにいったよね"
+                    ]
+                },
+                {
+                    "name": "GoFireworksIntent",
+                    "slots": [],
+                    "samples": [
+                        "花火を見ににいったよね"
+                    ]
+                },
+                {
+                    "name": "InsectsIntent",
+                    "slots": [],
+                    "samples": [
+                        "実家でよく虫取りしたなあ"
+                    ]
+                },
+                {
+                    "name": "GoSeaIntent",
+                    "slots": [],
+                    "samples": [
+                        "海に行ったよね",
+                        "夏といえば海だね"
+                    ]
+                },
+                {
+                    "name": "GoThunderIntent",
+                    "slots": [],
+                    "samples": [
+                        "雷多かったなあ"
                     ]
                 },
                 {

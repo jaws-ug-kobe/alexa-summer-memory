@@ -1,13 +1,9 @@
 import { HandlerInputCreator } from '@ask-utils/test';
-import { RequestHandlerFactory } from '@talkyjs/core';
 import { RequestHandler } from 'ask-sdk-core';
-import { PlaybackFinishedRouter } from '../PlaybackFinished.router'
+import { PlaybackStartedHandler } from '../PlaybackStarted.handler'
 
-describe('PlaybackFinishedRouter', () => {
-  let handler: RequestHandler;
-  beforeEach(() => {
-    handler = RequestHandlerFactory.create(PlaybackFinishedRouter);
-  });
+describe('PlaybackStartedHandler', () => {
+  const handler: RequestHandler = PlaybackStartedHandler
   describe('canHandle', () => {
     it('should return false when given a not LaunchRequest', async () => {
       const handlerInput = new HandlerInputCreator().createLaunchRequest();
@@ -16,7 +12,7 @@ describe('PlaybackFinishedRouter', () => {
     
     it('should return false when given a not IntentRequest', async () => {
       const handlerInput = new HandlerInputCreator().createIntentRequest({
-        name: "PlaybackFinished",
+        name: "PlaybackStarted",
         confirmationStatus: 'NONE'
       });
       await expect(handler.canHandle(handlerInput)).resolves.toMatchSnapshot();

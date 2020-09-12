@@ -12,7 +12,7 @@ export const FirstLaunchRequestRouter: Router = {
     },
     handler: async (handlerInput) => {
         return handlerInput.responseBuilder
-            .speak("今年の夏はどこも行きづらくって大変でしたね。このスキルで少しでもキャンプ気分を味わってもらえたらうれしいです。どこに行きましょうか？").reprompt("どこに行きましょうか？")
+            .speak("今年の夏はどこも行きづらくって大変でしたね? このスキルで少しでも夏の気分を味わってもらえたらうれしいです。どこに行きましょうか？").reprompt("どこに行きましょうか？")
             .addDirective({
                 type: 'Alexa.Presentation.APL.RenderDocument',
                 token: 'LaunchRequest',
@@ -32,7 +32,7 @@ export const SecondLaunchRequestRouter: Router = {
     },
     handler: async (handlerInput) => {
         return handlerInput.responseBuilder
-            .speak("おかえりなさい。キャンプ、好きなんですね。今日はどこに行きましょうか？").reprompt("今日はどこに行きましょうか？")
+            .speak("おかえりなさい。今日はどこに行きましょうか？").reprompt("今日はどこに行きましょうか？")
             .addDirective({
                 type: 'Alexa.Presentation.APL.RenderDocument',
                 token: 'LaunchRequest',
@@ -60,7 +60,7 @@ export const DefaultLaunchRequestRouter: Router = {
     requestType: "LaunchRequest",
     handler: async (handlerInput) => {
         return handlerInput.responseBuilder
-            .speak("今年の夏はどこも行きづらくって大変でしたね。このスキルで少しでもキャンプ気分を味わってもらえたらうれしいです。どこに行きましょうか？").reprompt("どこに行きましょうか？")
+            .speak("今年の夏はどこも行きづらくって大変でしたね? このスキルで少しでも夏の気分を味わってもらえたらうれしいです。どこに行きましょうか？").reprompt("どこに行きましょうか？")
             .addDirective({
                 type: 'Alexa.Presentation.APL.RenderDocument',
                 token: 'LaunchRequest',
