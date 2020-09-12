@@ -17,6 +17,7 @@ export const PauseIntentRouter: Router = {
                 </amazon:effect>
             </speak>`)
             .addAudioPlayerStopDirective()
+            .withShouldEndSession(true)
             .getResponse()
         
         

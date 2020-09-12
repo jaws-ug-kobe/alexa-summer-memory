@@ -1,7 +1,7 @@
 {
     "interactionModel": {
         "languageModel": {
-            "invocationName": "キャンプの思い出",
+            "invocationName": "夏の思い出",
             "intents": [
                 {
                     "name": "AMAZON.CancelIntent",
@@ -27,14 +27,16 @@
                     "name": "GoCampingIntent",
                     "slots": [],
                     "samples": [
-                        "キャンプにいったよね"
+                        "キャンプにいったよね",
+                        "キャンプ楽しかったなあ"
                     ]
                 },
                 {
                     "name": "GoFireworksIntent",
                     "slots": [],
                     "samples": [
-                        "花火を見ににいったよね"
+                        "花火を見ににいったよね",
+                        "花火綺麗だったねえ"
                     ]
                 },
                 {

@@ -11,7 +11,7 @@ export const GoCampingIntentRouter: Router = {
         const playbackInfo = await PB.getPlaybackInfo(handlerInput)
         
         playbackInfo.nextStreamEnqueued = false
-        playbackInfo.index = (playbackInfo.index >= 0) ? playbackInfo.index : 0
+        playbackInfo.index = 0
         const sound = playbackInfo.playOrder[playbackInfo.index]
         playbackInfo.token = sound
         console.log('Play:', JSON.stringify(playbackInfo))
