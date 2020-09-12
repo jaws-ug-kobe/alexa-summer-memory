@@ -1,4 +1,4 @@
-# alexa-summer-camp-memory
+# alexa-summer-memory
 
 ## requirements
 ask cli v2
