@@ -1,7 +1,7 @@
 {
     "interactionModel": {
         "languageModel": {
-            "invocationName": "キャンプの思い出",
+            "invocationName": "夏の思い出",
             "intents": [
                 {
                     "name": "AMAZON.CancelIntent",
@@ -27,7 +27,42 @@
                     "name": "GoCampingIntent",
                     "slots": [],
                     "samples": [
-                        "森につれていって"
+                        "キャンプにいったよね",
+                        "キャンプ楽しかったなあ"
+                    ]
+                },
+                {
+                    "name": "GoFireworksIntent",
+                    "slots": [],
+                    "samples": [
+                        "花火を見ににいったよね",
+                        "花火綺麗だったねえ"
+                    ]
+                },
+                {
+                    "name": "GoInsectsIntent",
+                    "slots": [],
+                    "samples": [
+                        "子供のころよく虫取りしたよなあ",
+                        "虫取りしたよなあ"
+                    ]
+                },
+                {
+                    "name": "GoSeaIntent",
+                    "slots": [],
+                    "samples": [
+                        "海に行ったよね",
+                        "海楽しかったね",
+                        "海とても楽しかったね"
+                    ]
+                },
+                {
+                    "name": "GoThunderIntent",
+                    "slots": [],
+                    "samples": [
+                        "雷多かったなあ",
+                        "雷多かったねえ",
+                        "雷の鳴る日はちょっと怖かったねえ"
                     ]
                 },
                 {

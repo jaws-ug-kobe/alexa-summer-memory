@@ -35,10 +35,26 @@ Resources:
                   Action:
                     - logs:*
                   Resource: arn:aws:logs:*:*:*
+          - PolicyName: alexaSkillS3ExecutionPolicy
+            PolicyDocument:
+              Version: 2012-10-17
+              Statement:
                 - Effect: Allow
                   Action:
                     - s3:*
-                  Resource: arn:aws:s3:::alexa-summer-camp-memory/*
+                  Resource: 
+                    - arn:aws:s3:::*
+          - PolicyName: alexaSkillDynamoDbExecutionPolicy
+            PolicyDocument:
+              Version: 2012-10-17
+              Statement:
+                - Effect: Allow
+                  Action:
+                    - dynamodb:GetItem
+                    - dynamodb:PutItem
+                    - dynamodb:UpdateItem
+                  Resource: 
+                    - arn:aws:dynamodb:us-east-1:*:table/AlexaSummerMemories-playbackInfo
   AlexaSkillFunction:
     Type: AWS::Lambda::Function
     Properties:

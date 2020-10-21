@@ -4,18 +4,19 @@ import apl from '../apl/document'
 import ds from '../apl/datasources/default'
 import * as PB from '../helper/playbackInfo'
 
-export const GoCampingIntentRouter: Router = {
+export const GoFireworksIntentRouter: Router = {
     requestType: "IntentRequest",
-    intentName: "GoCampingIntent",
+    intentName: "GoFireworksIntent",
     handler: async (handlerInput) => {
-        const playbackInfo = await PB.setPlaybackInfo(handlerInput, 'camping')
+        const playbackInfo = await PB.setPlaybackInfo(handlerInput, 'fireworks')
         handlerInput.context.playbackInfo = playbackInfo
 
         return handlerInput.responseBuilder
-            .speak(`キャンプの思い出`)
+            .speak(`花火大会の思い出`)
+            .withShouldEndSession(true)
             .addDirective({
                 type: 'Alexa.Presentation.APL.RenderDocument',
-                token: 'GoCampingIntent',
+                token: 'GoFireworksIntent',
                 document: apl,
                 datasources: ds
 
@@ -31,4 +32,4 @@ export const GoCampingIntentRouter: Router = {
     }
 }
 
-export default GoCampingIntentRouter
+export default GoFireworksIntentRouter

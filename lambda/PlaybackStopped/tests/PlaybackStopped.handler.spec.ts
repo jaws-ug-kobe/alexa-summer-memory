@@ -1,22 +1,18 @@
 import { HandlerInputCreator } from '@ask-utils/test';
-import { RequestHandlerFactory } from '@talkyjs/core';
 import { RequestHandler } from 'ask-sdk-core';
-import { PlaybackNearlyFinishedRouter } from '../PlaybackNearlyFinished.router'
+import { PlaybackStoppedHandler } from '../PlaybackStopped.handler'
 
-describe('PlaybackNearlyFinishedRouter', () => {
-  let handler: RequestHandler;
-  beforeEach(() => {
-    handler = RequestHandlerFactory.create(PlaybackNearlyFinishedRouter);
-  });
+describe('PlaybackStoppedHandler', () => {
+  const handler: RequestHandler = PlaybackStoppedHandler
   describe('canHandle', () => {
     it('should return false when given a not LaunchRequest', async () => {
       const handlerInput = new HandlerInputCreator().createLaunchRequest();
-      await expect(handler.canHandle(handlerInput)).resolves.toEqual(false);
+      await expect(handler.canHandle(handlerInput)).resolves.toEqual(true);
     });
     
     it('should return false when given a not IntentRequest', async () => {
       const handlerInput = new HandlerInputCreator().createIntentRequest({
-        name: "PlaybackNearlyFinished",
+        name: "PlaybackStopped",
         confirmationStatus: 'NONE'
       });
       await expect(handler.canHandle(handlerInput)).resolves.toMatchSnapshot();

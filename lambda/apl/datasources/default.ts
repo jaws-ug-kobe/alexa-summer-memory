@@ -9,13 +9,13 @@ export default {
             "largeSourceUrl": null,
             "sources": [
                 {
-                    "url": "https://s3.amazonaws.com/alexa.summer.camp.memory.sound/apl/bg_camp_rake_001.JPG",
+                    "url": "https://s3.amazonaws.com/alexa.summer.camp.memory.graphic/apl/bg_camp_rake_001.JPG",
                     "size": "small",
                     "widthPixels": 0,
                     "heightPixels": 0
                 },
                 {
-                    "url": "https://s3.amazonaws.com/alexa.summer.camp.memory.sound/apl/bg_camp_rake_001.JPG",
+                    "url": "https://s3.amazonaws.com/alexa.summer.camp.memory.graphic/apl/bg_camp_rake_001.JPG",
                     "size": "large",
                     "widthPixels": 0,
                     "heightPixels": 0
@@ -28,20 +28,20 @@ export default {
             "largeSourceUrl": null,
             "sources": [
                 {
-                    "url": "https://s3.amazonaws.com/alexa.summer.camp.memory.sound/apl/bg_camp_rake_001.JPG",
+                    "url": "https://s3.amazonaws.com/alexa.summer.camp.memory.graphic/apl/bg_camp_rake_001.JPG",
                     "size": "small",
                     "widthPixels": 0,
                     "heightPixels": 0
                 },
                 {
-                    "url": "https://s3.amazonaws.com/alexa.summer.camp.memory.sound/apl/bg_camp_rake_001.JPG",
+                    "url": "https://s3.amazonaws.com/alexa.summer.camp.memory.graphic/apl/bg_camp_rake_001.JPG",
                     "size": "large",
                     "widthPixels": 0,
                     "heightPixels": 0
                 }
             ]
         },
-        "logoUrl": "https://s3.amazonaws.com/alexa.summer.camp.memory.sound/apl/bg_camp_rake_001.JPG",
+        "logoUrl": "https://s3.amazonaws.com/alexa.summer.camp.memory.graphic/apl/bg_camp_rake_001.JPG",
         "hintText": "Try, \"Alexa, search for blue cheese\""
     }
 }

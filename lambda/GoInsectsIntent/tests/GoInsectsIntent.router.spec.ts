@@ -1,12 +1,12 @@
 import { HandlerInputCreator } from '@ask-utils/test';
 import { RequestHandlerFactory } from '@talkyjs/core';
 import { RequestHandler } from 'ask-sdk-core';
-import { PlaybackStartedRouter } from '../PlaybackStarted.router'
+import { GoInsectsIntentRouter } from '../GoInsectsIntent.router'
 
-describe('PlaybackStartedRouter', () => {
+describe('GoInsectsIntentRouter', () => {
   let handler: RequestHandler;
   beforeEach(() => {
-    handler = RequestHandlerFactory.create(PlaybackStartedRouter);
+    handler = RequestHandlerFactory.create(GoInsectsIntentRouter);
   });
   describe('canHandle', () => {
     it('should return false when given a not LaunchRequest', async () => {
@@ -16,7 +16,7 @@ describe('PlaybackStartedRouter', () => {
     
     it('should return false when given a not IntentRequest', async () => {
       const handlerInput = new HandlerInputCreator().createIntentRequest({
-        name: "PlaybackStarted",
+        name: "GoInsectsIntent",
         confirmationStatus: 'NONE'
       });
       await expect(handler.canHandle(handlerInput)).resolves.toMatchSnapshot();

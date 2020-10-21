@@ -1,12 +1,12 @@
 import { HandlerInputCreator } from '@ask-utils/test';
 import { RequestHandlerFactory } from '@talkyjs/core';
 import { RequestHandler } from 'ask-sdk-core';
-import { PlaybackFailedRouter } from '../PlaybackFailed.router'
+import { GoThunderIntentRouter } from '../GoThunderIntent.router'
 
-describe('PlaybackFailedRouter', () => {
+describe('GoThunderIntentRouter', () => {
   let handler: RequestHandler;
   beforeEach(() => {
-    handler = RequestHandlerFactory.create(PlaybackFailedRouter);
+    handler = RequestHandlerFactory.create(GoThunderIntentRouter);
   });
   describe('canHandle', () => {
     it('should return false when given a not LaunchRequest', async () => {
@@ -16,7 +16,7 @@ describe('PlaybackFailedRouter', () => {
     
     it('should return false when given a not IntentRequest', async () => {
       const handlerInput = new HandlerInputCreator().createIntentRequest({
-        name: "PlaybackFailed",
+        name: "GoThunderIntent",
         confirmationStatus: 'NONE'
       });
       await expect(handler.canHandle(handlerInput)).resolves.toMatchSnapshot();

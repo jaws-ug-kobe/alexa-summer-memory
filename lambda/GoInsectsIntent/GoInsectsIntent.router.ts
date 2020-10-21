@@ -1,21 +1,21 @@
 import { Router } from "@talkyjs/core";
-
 import apl from '../apl/document'
 import ds from '../apl/datasources/default'
 import * as PB from '../helper/playbackInfo'
 
-export const GoCampingIntentRouter: Router = {
+export const GoInsectsIntentRouter: Router = {
     requestType: "IntentRequest",
-    intentName: "GoCampingIntent",
+    intentName: "GoInsectsIntent",
     handler: async (handlerInput) => {
-        const playbackInfo = await PB.setPlaybackInfo(handlerInput, 'camping')
+        const playbackInfo = await PB.setPlaybackInfo(handlerInput, 'insects')
         handlerInput.context.playbackInfo = playbackInfo
 
         return handlerInput.responseBuilder
-            .speak(`キャンプの思い出`)
+            .speak(`虫取りした思い出`)
+            .withShouldEndSession(true)
             .addDirective({
                 type: 'Alexa.Presentation.APL.RenderDocument',
-                token: 'GoCampingIntent',
+                token: 'GoInsectsIntent',
                 document: apl,
                 datasources: ds
 
@@ -31,4 +31,4 @@ export const GoCampingIntentRouter: Router = {
     }
 }
 
-export default GoCampingIntentRouter
+export default GoInsectsIntentRouter
