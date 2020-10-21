@@ -8,14 +8,8 @@ export const GoThunderIntentRouter: Router = {
     requestType: "IntentRequest",
     intentName: "GoThunderIntent",
     handler: async (handlerInput) => {
-        const playbackInfo = await PB.getPlaybackInfo(handlerInput)
-        
-        playbackInfo.nextStreamEnqueued = false
-        playbackInfo.index = 7
-        const sound = playbackInfo.playOrder[playbackInfo.index]
-        playbackInfo.token = sound
-        console.log('Play:', JSON.stringify(playbackInfo))
-        handlerInput.attributesManager.setPersistentAttributes({playbackInfo})
+        const playbackInfo = await PB.setPlaybackInfo(handlerInput, 'thunderbolt')
+        handlerInput.context.playbackInfo = playbackInfo
 
         return handlerInput.responseBuilder
             .speak(`雷の強かった日の思い出`)
@@ -29,7 +23,7 @@ export const GoThunderIntentRouter: Router = {
             })
             .addAudioPlayerPlayDirective(
                 'REPLACE_ALL',
-                sound,
+                playbackInfo.track,
                 playbackInfo.token,
                 playbackInfo.offsetInMilliseconds,
                 null

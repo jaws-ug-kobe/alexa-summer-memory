@@ -8,45 +8,41 @@ export const PlaybackNearlyFinishedHandler:  RequestHandler = {
         
     },
     async handle(handlerInput) {
-        const playbackConfig = await PB.getPlaybackConfig(handlerInput)
-        const playbackInfo = await PB.getPlaybackInfo(handlerInput)
-        if (playbackInfo.nextStreamEnqueued) {
-            console.log("PlaybackNearlyFinished:", playbackInfo);
-            return handlerInput.responseBuilder
-                .getResponse()
-        }
-
-        const enqueueIndex = (playbackInfo.index + 1) % playbackInfo.playOrder.length;
-
-        if (enqueueIndex === 0 && !playbackConfig.loop) {
-          console.log("PlaybackNearlyFinished:", playbackInfo);
-          return handlerInput.responseBuilder
-              .getResponse()
-        }
-
-        playbackInfo.nextStreamEnqueued = true;
-
-        const enqueueToken = playbackInfo.playOrder[enqueueIndex];
-        const playBehavior = 'ENQUEUE';
-        const sound = playbackInfo.playOrder[enqueueIndex];
         // @ts-ignore
-        const expectedPreviousToken = handlerInput.requestEnvelope.request.token;
-        const offsetInMilliseconds = 0;
+        const playbackInfo: PB.PlaybackStatus = {}
 
-        console.log("PlaybackNearlyFinished:", playbackInfo);
-        console.log('enqueueToken:', enqueueToken)
-        console.log('behavior:', 'ENQUEUE')
-        console.log('sound:', sound)
-        console.log('expectedPreviousToken:', expectedPreviousToken)
-        console.log('offsetMilliseconds:', 0)
-        handlerInput.attributesManager.setPersistentAttributes({playbackInfo})
-        return handlerInput.responseBuilder.addAudioPlayerPlayDirective(
-            playBehavior,
-            sound,
-            enqueueToken,
-            offsetInMilliseconds,
-            expectedPreviousToken,
-        ).getResponse()
+        // @ts-ignore
+        const expectedPreviousToken = handlerInput.requestEnvelope.request.token
+        const trackAndKey = expectedPreviousToken.split('&')
+        const track = trackAndKey[0]
+        const key = trackAndKey[1]
+        // @ts-ignore
+        const audios = PB.playbackAudio[key]
+        // @ts-ignore
+        let index = audios.findIndex(a => a === track)
+
+        if (audios.length < index) {
+            const nextTrack = audios[index++]
+            const nextToken = `${nextTrack}&${key}`
+
+            playbackInfo.user_id = handlerInput.requestEnvelope.context.System.user.userId
+            // @ts-ignore
+            playbackInfo.nextStreamEnqueued = true
+            const playBehavior = 'ENQUEUE'
+            // @ts-ignore
+            playbackInfo.offsetInMilliseconds = 0
+            handlerInput.context.playbackInfo = playbackInfo
+
+            return handlerInput.responseBuilder.addAudioPlayerPlayDirective(
+                playBehavior,
+                nextTrack,
+                nextToken,
+                playbackInfo.offsetInMilliseconds,
+                expectedPreviousToken,
+            ).getResponse()
+        } else {
+            return handlerInput.responseBuilder.getResponse()
+        }
     }
 }
 

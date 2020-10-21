@@ -1,35 +1,29 @@
 import { Router } from "@talkyjs/core";
-
 import apl from '../apl/document'
 import ds from '../apl/datasources/default'
 import * as PB from '../helper/playbackInfo'
 
-export const InsectsIntentRouter: Router = {
+
+export const GoHotSummerIntentRouter: Router = {
     requestType: "IntentRequest",
-    intentName: "InsectsIntent",
+    intentName: "GoHotSummerIntent",
     handler: async (handlerInput) => {
-        const playbackInfo = await PB.getPlaybackInfo(handlerInput)
-        
-        playbackInfo.nextStreamEnqueued = false
-        playbackInfo.index = 1
-        const sound = playbackInfo.playOrder[playbackInfo.index]
-        playbackInfo.token = sound
-        console.log('Play:', JSON.stringify(playbackInfo))
-        handlerInput.attributesManager.setPersistentAttributes({playbackInfo})
+        const playbackInfo = await PB.setPlaybackInfo(handlerInput, 'hotsummer')
+        handlerInput.context.playbackInfo = playbackInfo
 
         return handlerInput.responseBuilder
-            .speak(`虫取りの思い出`)
+            .speak(`暑かった夏の思い出`)
             .withShouldEndSession(true)
             .addDirective({
                 type: 'Alexa.Presentation.APL.RenderDocument',
-                token: 'InsectsIntent',
+                token: 'GoFireworksIntent',
                 document: apl,
                 datasources: ds
 
             })
             .addAudioPlayerPlayDirective(
                 'REPLACE_ALL',
-                sound,
+                playbackInfo.track,
                 playbackInfo.token,
                 playbackInfo.offsetInMilliseconds,
                 null
@@ -38,4 +32,4 @@ export const InsectsIntentRouter: Router = {
     }
 }
 
-export default InsectsIntentRouter
+export default GoHotSummerIntentRouter

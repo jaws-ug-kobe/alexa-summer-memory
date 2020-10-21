@@ -15,24 +15,17 @@ import GoCampingIntentRouter from './GoCampingIntent/GoCampingIntent.router'
 import GoSeaIntentRouter from './GoSeaIntent/GoSeaIntent.router'
 import GoFireworksIntentRouter from './GoFireworksIntent/GoFireworksIntent.router'
 import GoThunderIntentRouter from './GoThunderIntent/GoThunderIntent.router'
-import InsectsIntentRouter from './InsectsIntent/InsectsIntent.router'
+import GoInsectsIntentRouter from './GoInsectsIntent/GoInsectsIntent.router'
 
 import NextIntentRouter from './NextIntent/NextIntent.router'
-import * as playbackInfo from './helper/playbackInfo' 
+import * as PB from './helper/playbackInfo' 
 import { HandlerInput, LambdaHandler, SkillBuilders } from 'ask-sdk-core'
-import { S3PersistenceAdapter } from 'ask-sdk-s3-persistence-adapter'
 
 import PlaybackStartedHandler from './PlaybackStarted/PlaybackStarted.handler'
 import PlaybackStoppedHandler from './PlaybackStopped/PlaybackStopped.handler'
 import PlaybackFinishedHandler from './PlaybackFinished/PlaybackFinished.handler'
 import PlaybackNearlyFinishedHandler from './PlaybackNearlyFinished/PlaybackNearlyFinished.handler'
 import PlaybackFailedHandler from './PlaybackFailed/PlaybackFailed.handler'
-
-const s3 = new S3PersistenceAdapter(
-  {
-    bucketName: 'alexa-summer-camp-memory',
-  }
-)
 
 const config: TalkyJSSkillConfig = {
     stage: 'production',                  // [Optional] Skill Stage
@@ -44,17 +37,25 @@ const config: TalkyJSSkillConfig = {
     skillId: 'amzn1.ask.skill.1d1e688d-cd02-4380-a7a1-94d1279d5af3' // [Optional] Skill ID,
 }
 
+/**
+ * Load current playback status
+ */
 const LoadPersistentAttributesRequestInterceptor = {
   async process(handlerInput: HandlerInput) {
-    // console.log('Input:', JSON.stringify(handlerInput))
-    await playbackInfo.init(handlerInput)
+    console.log('Input:', JSON.stringify(handlerInput))
+    const playbackInfo = await PB.getPlaybackInfo(handlerInput)
+    handlerInput.context.playbackInfo = playbackInfo
   }
 };
 
+/**
+ * Update latest playback status
+ */
 const SavePersistentAttributesResponseInterceptor = {
   async process(handlerInput: HandlerInput) {
-    // console.log('Save:', JSON.stringify(handlerInput))
-    await handlerInput.attributesManager.savePersistentAttributes();
+    await PB.updatePlaybackInfo(handlerInput.context.playbackInfo)
+    console.log('Save:', JSON.stringify(handlerInput))
+    // await handlerInput.attributesManager.savePersistentAttributes();
   }
 };
 
@@ -74,7 +75,7 @@ export const handler: LambdaHandler = async (event, context) => {
           PlaybackFinishedHandler,
           PlaybackNearlyFinishedHandler
         )
-        .withPersistenceAdapter(s3)
+        // .withPersistenceAdapter(s3)
         .withSkillId('amzn1.ask.skill.1d1e688d-cd02-4380-a7a1-94d1279d5af3')
       : SkillFactory.launch(config)
           .addRequestRouters([
@@ -88,7 +89,7 @@ export const handler: LambdaHandler = async (event, context) => {
               GoSeaIntentRouter,
               GoThunderIntentRouter,
               GoFireworksIntentRouter,
-              InsectsIntentRouter,
+              GoInsectsIntentRouter,
               NextIntentRouter,
           ])
           .getSkill()

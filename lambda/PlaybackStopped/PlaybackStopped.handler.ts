@@ -6,14 +6,23 @@ export const PlaybackStoppedHandler:  RequestHandler = {
         return handlerInput.requestEnvelope.request.type === "AudioPlayer.PlaybackStopped"
     },
     async handle(handlerInput) {
-        const playbackInfo = await PB.getPlaybackInfo(handlerInput)
-        playbackInfo.token = PB.getToken(handlerInput);
-        playbackInfo.index = await PB.getIndex(handlerInput);
-        playbackInfo.offsetInMilliseconds = PB.getOffsetInMilliseconds(handlerInput);        
-        console.log("PlaybackStopped:", playbackInfo);
-        handlerInput.attributesManager.setPersistentAttributes({playbackInfo})
-        return handlerInput.responseBuilder
-            .getResponse()
+        // await PB.updatePlaybackInfoByEvent(handlerInput)
+        // @ts-ignore
+        const playbackInfo: PlaybackStatus = {}
+        // @ts-ignore
+        playbackInfo.token = handlerInput.requestEnvelope.request.token
+        const trackAndKey = playbackInfo.token.split('&')
+        const track = trackAndKey[0]
+        const key = trackAndKey[1]
+
+        playbackInfo.user_id = handlerInput.requestEnvelope.context.System.user.userId
+        // @ts-ignore
+        playbackInfo.index = PB.playbackAudio[key].findIndex(audio => audio == track)
+        // @ts-ignore
+        playbackInfo.offsetInMilliseconds = handlerInput.requestEnvelope.request.offsetInMilliseconds
+
+        handlerInput.context.playbackInfo = playbackInfo
+        return handlerInput.responseBuilder.getResponse()
     }
 }
 

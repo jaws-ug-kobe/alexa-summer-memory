@@ -8,14 +8,8 @@ export const GoFireworksIntentRouter: Router = {
     requestType: "IntentRequest",
     intentName: "GoFireworksIntent",
     handler: async (handlerInput) => {
-        const playbackInfo = await PB.getPlaybackInfo(handlerInput)
-        
-        playbackInfo.nextStreamEnqueued = false
-        playbackInfo.index = 2
-        const sound = playbackInfo.playOrder[playbackInfo.index]
-        playbackInfo.token = sound
-        console.log('Play:', JSON.stringify(playbackInfo))
-        handlerInput.attributesManager.setPersistentAttributes({playbackInfo})
+        const playbackInfo = await PB.setPlaybackInfo(handlerInput, 'fireworks')
+        handlerInput.context.playbackInfo = playbackInfo
 
         return handlerInput.responseBuilder
             .speak(`花火大会の思い出`)
@@ -29,7 +23,7 @@ export const GoFireworksIntentRouter: Router = {
             })
             .addAudioPlayerPlayDirective(
                 'REPLACE_ALL',
-                sound,
+                playbackInfo.track,
                 playbackInfo.token,
                 playbackInfo.offsetInMilliseconds,
                 null
