@@ -11,7 +11,8 @@
   "dependencies": {
     "@talkyjs/core": "^1.0.0",
     "ask-sdk-core": "^2.6.0",
-    "ask-sdk-model": "^1.18.0"
+    "ask-sdk-model": "^1.18.0",
+    "ask-sdk-s3-persistence-adapter": "^2.9.0"
   },
   "devDependencies": {
     "@ask-utils/test": "3.x",

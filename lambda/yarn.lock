@@ -1067,7 +1067,7 @@ ask-sdk-runtime@^2.8.0:
   resolved "https://registry.yarnpkg.com/ask-sdk-runtime/-/ask-sdk-runtime-2.8.0.tgz#a958faad9de9c10b67d469900129dda81347cac2"
   integrity sha512-hsVDcFKcbuj2H7MuAUlW0RBCTF8QOXfVCsrWSIgV2ABi8+PyI0zGUe8TdkQOGsPrDAv1PIzOS42QYqxWwPsp2g==
 
-ask-sdk-s3-persistence-adapter@^2.8.0:
+ask-sdk-s3-persistence-adapter@^2.8.0, ask-sdk-s3-persistence-adapter@^2.9.0:
   version "2.9.0"
   resolved "https://registry.yarnpkg.com/ask-sdk-s3-persistence-adapter/-/ask-sdk-s3-persistence-adapter-2.9.0.tgz#fd5b2f7397475f279580326c8b8a19cf9d371a90"
   integrity sha512-s+XFREt9icgYu5/tuePyUzPMf1EI5ST3+PjLlm000pgrWDl/4d2bPbYjxMgLdCrX+LeJp8oTEIRA5gGdxqA6YQ==
